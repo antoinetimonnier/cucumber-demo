@@ -16,4 +16,11 @@ public interface ICocktailBusinessService {
 	 * @return la liste comportant l'ensemble des cocktails
 	 */
 	public List<Cocktail> getAllCocktails();
+
+	/**
+	 * Méthode d'enregistrement 
+	 * @param cocktail
+	 * @return
+	 */
+	public Cocktail save(Cocktail cocktail);
 }

@@ -7,22 +7,25 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
-
+/**
+ * Entité représentant un cocktail
+ * @author an.timonnier
+ *
+ */
 @Entity
 @Table(name = "cocktail", uniqueConstraints = @UniqueConstraint(columnNames = { "id", "nom" }))
 public class Cocktail {
 
 	@Id
-	@Column(name = "id")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@Column(name = "id", updatable = false, nullable = false)
+	@GeneratedValue
 	private Long id;
 	
-	@Column(name = "nom", nullable = false)
+	@Column(name = "nom", updatable = false, nullable = false)
 	private String nom;
 	
 	@OneToMany(mappedBy = "cocktail", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
