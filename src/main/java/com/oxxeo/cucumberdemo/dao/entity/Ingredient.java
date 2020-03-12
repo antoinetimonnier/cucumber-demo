@@ -1,43 +1,42 @@
 package com.oxxeo.cucumberdemo.dao.entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
-
+/**
+ * Entité représentant un ingrédient
+ * @author an.timonnier
+ *
+ */
 @Entity
-@Table(name = "ingredient", uniqueConstraints = @UniqueConstraint(columnNames = { "id", "nom" }))
+@Table(name = "ingredient", uniqueConstraints = @UniqueConstraint(columnNames = { "nom", "contains_alcool" }))
 public class Ingredient {
 	
 	@Id
 	@Column(name = "id")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	private Long id;
+	@GeneratedValue
+	private Integer id;
 	
 	@Column(name = "nom", nullable = false)
 	private String nom;
 	
-	@Column(name = "quantite", nullable = false)
-	private Integer quantite;
+	@Column(name = "contains_alcool", nullable = false)
+	private boolean containsAlcool;
 	
-	@Column(name = "is_alcool", nullable = false)
-	private boolean isAlcool;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_cocktail")
-	private Cocktail cocktail;
+	@ManyToMany(mappedBy = "ingredients")
+	private List<Cocktail> cocktails;
 
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -49,22 +48,21 @@ public class Ingredient {
 		this.nom = nom;
 	}
 
-	public Integer getQuantite() {
-		return quantite;
+
+	public boolean isContainsAlcool() {
+		return containsAlcool;
 	}
 
-	public void setQuantite(Integer quantite) {
-		this.quantite = quantite;
+	public void setContainsAlcool(boolean containsAlcool) {
+		this.containsAlcool = containsAlcool;
 	}
 
-	public boolean isAlcool() {
-		return isAlcool;
+	public List<Cocktail> getCocktails() {
+		return cocktails;
 	}
 
-	public void setAlcool(boolean isAlcool) {
-		this.isAlcool = isAlcool;
+	public void setCocktails(List<Cocktail> cocktails) {
+		this.cocktails = cocktails;
 	}
 	
-	
-
 }

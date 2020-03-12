@@ -8,9 +8,13 @@ import com.oxxeo.cucumberdemo.dao.entity.Cocktail;
 import com.oxxeo.cucumberdemo.dto.CocktailDto;
 
 @Mapper(uses=IngredientMapper.class)
-public interface CocktailMapper {
+public abstract class CocktailMapper {
 
-	public CocktailDto toDto(Cocktail entity);
+	public abstract CocktailDto toDto(Cocktail entity);
 	
-	public List<CocktailDto> toDtos(List<Cocktail> entities);
+	public abstract List<CocktailDto> toDtos(List<Cocktail> entities);
+	
+	public abstract Cocktail toEntity(CocktailDto dto);
+	
+	public abstract List<Cocktail> toEntities(List<CocktailDto> dtos);
 }

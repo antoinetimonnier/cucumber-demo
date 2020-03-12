@@ -8,10 +8,18 @@ import com.oxxeo.cucumberdemo.dao.entity.Ingredient;
 import com.oxxeo.cucumberdemo.dto.IngredientDto;
 
 @Mapper
-public interface IngredientMapper {
+public abstract class IngredientMapper {
 	
-	public IngredientDto toDto(Ingredient entity);
+	public abstract IngredientDto toDto(Ingredient entity);
 	
-	public List<IngredientDto> toDtos(List<Ingredient> entities);
+	public abstract List<IngredientDto> toDtos(List<Ingredient> entities);
+	
+	public abstract Ingredient toEntity(IngredientDto dto);
+	
+	public abstract List<Ingredient> toEntities(List<IngredientDto> dtos);
+	
+	
+	
+
 
 }
