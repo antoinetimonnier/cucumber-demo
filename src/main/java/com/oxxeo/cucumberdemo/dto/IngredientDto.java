@@ -1,5 +1,7 @@
 package com.oxxeo.cucumberdemo.dto;
 
+import javax.validation.constraints.NotNull;
+
 /**
  * DTO représentant un ingrédient
  * @author an.timonnier
@@ -7,21 +9,18 @@ package com.oxxeo.cucumberdemo.dto;
  */
 public class IngredientDto {
 
-	private Long id;
+	private Integer id;
 	
+	@NotNull
 	private String nom;
 	
-	private Integer quantite;
-	
-	private boolean isAlcool;
-	
-	private Long idCocktail;
+	private boolean containsAlcool;
 
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -33,29 +32,14 @@ public class IngredientDto {
 		this.nom = nom;
 	}
 
-	public Integer getQuantite() {
-		return quantite;
+	public boolean isContainsAlcool() {
+		return containsAlcool;
 	}
 
-	public void setQuantite(Integer quantite) {
-		this.quantite = quantite;
+	public void setContainsAlcool(boolean containsAlcool) {
+		this.containsAlcool = containsAlcool;
 	}
 
-	public boolean isAlcool() {
-		return isAlcool;
-	}
-
-	public void setAlcool(boolean isAlcool) {
-		this.isAlcool = isAlcool;
-	}
-
-	public Long getIdCocktail() {
-		return idCocktail;
-	}
-
-	public void setIdCocktail(Long idCocktail) {
-		this.idCocktail = idCocktail;
-	}
 	
 	
 }

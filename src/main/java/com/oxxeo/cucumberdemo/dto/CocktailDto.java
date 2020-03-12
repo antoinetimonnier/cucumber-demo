@@ -2,21 +2,31 @@ package com.oxxeo.cucumberdemo.dto;
 
 import java.util.List;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+/**
+ * Dto représentant un cocktail
+ * @author an.timonnier
+ *
+ */
 public class CocktailDto {
 	
-	private Long id;
+	private Integer id;
 	
+	@NotNull
 	private String nom;
 	
+	@NotEmpty
 	private List<IngredientDto> ingredients;
 	
+	@NotNull
 	private Long prix;
 
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
