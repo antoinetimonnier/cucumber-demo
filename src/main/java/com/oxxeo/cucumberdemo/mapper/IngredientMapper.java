@@ -6,7 +6,11 @@ import org.mapstruct.Mapper;
 
 import com.oxxeo.cucumberdemo.dao.entity.Ingredient;
 import com.oxxeo.cucumberdemo.dto.IngredientDto;
-
+/**
+ * Mapper des ingrédients
+ * @author an.timonnier
+ *
+ */
 @Mapper
 public abstract class IngredientMapper {
 	

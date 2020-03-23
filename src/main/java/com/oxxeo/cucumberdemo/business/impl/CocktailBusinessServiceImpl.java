@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 import com.oxxeo.cucumberdemo.business.ICocktailBusinessService;
 import com.oxxeo.cucumberdemo.dao.entity.Cocktail;
 import com.oxxeo.cucumberdemo.dao.entity.Ingredient;
-import com.oxxeo.cucumberdemo.dao.repository.ICocktailRepository;
-import com.oxxeo.cucumberdemo.dao.repository.IIngredientRepository;
+import com.oxxeo.cucumberdemo.dao.repository.CocktailRepository;
+import com.oxxeo.cucumberdemo.dao.repository.IngredientRepository;
 import com.oxxeo.cucumberdemo.dto.CocktailDto;
 import com.oxxeo.cucumberdemo.dto.IngredientDto;
 import com.oxxeo.cucumberdemo.exceptions.ExistingCocktailException;
@@ -25,7 +25,7 @@ import com.oxxeo.cucumberdemo.mapper.IngredientMapper;
 public class CocktailBusinessServiceImpl implements ICocktailBusinessService{
 	
 	@Autowired
-	private ICocktailRepository cocktailRepository;
+	private CocktailRepository cocktailRepository;
 	
 	@Autowired
 	private CocktailMapper cocktailMapper;
@@ -34,7 +34,7 @@ public class CocktailBusinessServiceImpl implements ICocktailBusinessService{
 	private IngredientMapper ingredientMapper;
 	
 	@Autowired
-	private IIngredientRepository ingredientRepository;
+	private IngredientRepository ingredientRepository;
 
 	@Override
 	public List<CocktailDto> getAllCocktails() {

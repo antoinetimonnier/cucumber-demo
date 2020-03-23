@@ -9,7 +9,7 @@ import com.oxxeo.cucumberdemo.dao.entity.Ingredient;
  * @author an.timonnier
  *
  */
-public interface IIngredientRepository extends JpaRepository<Ingredient, Integer>{
+public interface IngredientRepository extends JpaRepository<Ingredient, Integer>{
 	
 	Ingredient findByNomAndContainsAlcool(String nom, boolean containsAlcool);
 

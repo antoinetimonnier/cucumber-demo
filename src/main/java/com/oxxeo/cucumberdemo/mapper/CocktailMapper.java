@@ -6,7 +6,11 @@ import org.mapstruct.Mapper;
 
 import com.oxxeo.cucumberdemo.dao.entity.Cocktail;
 import com.oxxeo.cucumberdemo.dto.CocktailDto;
-
+/**
+ * Mapper des cocktails
+ * @author an.timonnier
+ *
+ */
 @Mapper(uses=IngredientMapper.class)
 public abstract class CocktailMapper {
 

@@ -8,13 +8,13 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.web.client.RestTemplate;
 
 /**
- * Classe de configuration pour les appels à l'api
+ * Classe de configuration pour les appels rest à l'api
  * @author an.timonnier
  *
  */
 @TestConfiguration
 @Profile("test-cucumber")
-public class TestCucumberConfig {
+public class TestRestConfig {
 	
 	/**
 	 * RestTemplate pour les appels à l'API.

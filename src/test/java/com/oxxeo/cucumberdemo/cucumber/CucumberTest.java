@@ -4,6 +4,8 @@ import org.junit.runner.RunWith;
 
 import cucumber.api.CucumberOptions;
 import cucumber.api.junit.Cucumber;
+
+
 /**
  * Classe pour jouer les test cucumber
  * @author an.timonnier
@@ -15,6 +17,8 @@ import cucumber.api.junit.Cucumber;
 		features = { "classpath:features/" },
 		// Définition du package ou trouver les StepDefinitions
 		glue = { "com.oxxeo.cucumberdemo.cucumber.step" },
+		// Plugin Junit pour le lancement des test
+		plugin = { "pretty", "junit:target/resultat_tests_cucumber.xml" },
 		// Strict mode (en echec si des test sont à undefined ou pending)
 		strict = true)
 public class CucumberTest {

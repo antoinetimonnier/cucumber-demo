@@ -11,7 +11,7 @@ import com.oxxeo.cucumberdemo.dao.entity.Ingredient;
  * @author an.timonnier
  *
  */
-public interface ICocktailRepository extends JpaRepository<Cocktail, Integer>{
+public interface CocktailRepository extends JpaRepository<Cocktail, Integer>{
 
 	/**
 	 * Récupère le cocktail correspondant au nom et au prix passé en paramètre
