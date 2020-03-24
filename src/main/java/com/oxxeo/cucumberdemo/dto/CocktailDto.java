@@ -1,8 +1,8 @@
 package com.oxxeo.cucumberdemo.dto;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 /**
  * Dto représentant un cocktail
@@ -16,8 +16,7 @@ public class CocktailDto {
 	@NotNull
 	private String nom;
 	
-	@NotEmpty
-	private List<IngredientDto> ingredients;
+	private List<IngredientDto> ingredients = new ArrayList<>();
 	
 	@NotNull
 	private Long prix;
