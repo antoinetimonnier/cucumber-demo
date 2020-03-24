@@ -1,26 +1,23 @@
 package com.oxxeo.cucumberdemo.cucumber.step;
 
+import static io.cucumber.spring.CucumberTestContext.SCOPE_CUCUMBER_GLUE;
+
 import java.util.Optional;
 
-import org.junit.Before;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Scope;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.ContextConfiguration;
+import org.springframework.stereotype.Component;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import com.oxxeo.cucumberdemo.CucumberDemoApplication;
-import com.oxxeo.cucumberdemo.cucumber.configuration.TestDatabaseConfig;
-import com.oxxeo.cucumberdemo.cucumber.configuration.TestRestConfig;
 import com.oxxeo.cucumberdemo.cucumber.context.World;
 
 /**
@@ -28,9 +25,8 @@ import com.oxxeo.cucumberdemo.cucumber.context.World;
  * @author an.timonnier
  *
  */
-@ContextConfiguration(classes = { CucumberDemoApplication.class, TestRestConfig.class, TestDatabaseConfig.class})
-@SpringBootTest(classes = { CucumberDemoApplication.class }, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@ActiveProfiles("test-cucumber")
+@Component
+@Scope(SCOPE_CUCUMBER_GLUE)
 public class WorldManipulator {
 	/**
 	 * Le world contient tous les éléments transverses aux test cucumber
@@ -40,16 +36,11 @@ public class WorldManipulator {
 	/**
 	 * Template d'appel REST (non mocké)
 	 */
-	@Autowired
-	private RestTemplate restTemplateAppelApi;
+	private final RestTemplate restTemplate = new RestTemplate();
 	
 	@Autowired
 	private Environment environment;
-	
-	@Before
-	public void before() {
-		this.world = new World();
-	}
+
 	
 	/**
 	 * Méthode d'appel rest GET pour une URL et pour un type de retour particulier
@@ -59,12 +50,13 @@ public class WorldManipulator {
 	 * @return retour du get
 	 */
 	public <T> T appelerGet(final String url, final Class<T> clazz) {
+		this.setWorld(new World());
 		this.getWorld().setMessageResponse(null);
 		try {
 			final HttpHeaders headers = new HttpHeaders();
 			headers.setContentType(MediaType.APPLICATION_JSON);
 			final HttpEntity<?> entity = new HttpEntity<>(headers);
-			final ResponseEntity<T> responsesDtos = restTemplateAppelApi.exchange(url, HttpMethod.GET, entity, clazz);
+			final ResponseEntity<T> responsesDtos = restTemplate.exchange(url, HttpMethod.GET, entity, clazz);
 			this.getWorld().setHttpStatusResponse(Optional.ofNullable(responsesDtos.getStatusCode()));
 			return responsesDtos.getBody();
 		} catch (final HttpStatusCodeException exception) {
@@ -84,11 +76,12 @@ public class WorldManipulator {
 	 * @return Valeur postée
 	 */
 	public <T> T appelerPost(final String url, final Object bodyDto, final Class<T> clazz) {
+		this.setWorld(new World());
 		try {
 			final HttpHeaders headers = new HttpHeaders();
 			headers.setContentType(MediaType.APPLICATION_JSON);
 			final HttpEntity<?> entity = new HttpEntity<>(bodyDto, headers);
-			final ResponseEntity<T> responsesDtos = restTemplateAppelApi.exchange(url, HttpMethod.POST, entity, clazz);
+			final ResponseEntity<T> responsesDtos = restTemplate.exchange(url, HttpMethod.POST, entity, clazz);
 			this.getWorld().setHttpStatusResponse(Optional.ofNullable(responsesDtos.getStatusCode()));
 			return responsesDtos.getBody();
 		} catch (final HttpClientErrorException exception) {
@@ -113,5 +106,10 @@ public class WorldManipulator {
 	public World getWorld() {
 		return world;
 	}
+	
+	public void setWorld(World world) {
+		this.world = world;
+	}
 
 }
+
