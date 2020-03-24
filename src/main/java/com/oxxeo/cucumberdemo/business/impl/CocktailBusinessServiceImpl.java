@@ -53,6 +53,8 @@ public class CocktailBusinessServiceImpl implements ICocktailBusinessService{
 				// Si l'ingrédient n'existe pas on créer le nouvel ingrédient
 				Ingredient ingredientAfterSave = ingredientRepository.save(ingredientMapper.toEntity(ingredientDto));
 				ingredientDto.setId(ingredientAfterSave.getId());
+			} else {
+				ingredientDto.setId(alreadyExistingIngredient.getId());
 			}
 		});
 		return cocktailMapper.toDto(cocktailRepository.save(cocktailMapper.toEntity(cocktailDto)));

@@ -2,25 +2,31 @@ package com.oxxeo.cucumberdemo.cucumber.step;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.assertj.core.api.Assertions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.oxxeo.cucumberdemo.dao.entity.Ingredient;
 import com.oxxeo.cucumberdemo.dao.repository.CocktailRepository;
 import com.oxxeo.cucumberdemo.dao.repository.IngredientRepository;
 import com.oxxeo.cucumberdemo.dto.CocktailDto;
 import com.oxxeo.cucumberdemo.dto.IngredientDto;
 
-import cucumber.api.java.en.Given;
-import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 
 /**
  * Classe de définition des given, when, then pour ce qui se rapporte directement à l'api
  * @author an.timonnier
  *
  */
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@Transactional
 public class StepDefinitions {
 	
 	@Autowired
@@ -36,6 +42,8 @@ public class StepDefinitions {
 	public void laBaseDeDonneeEstVide() {
 		ingredientRepository.deleteAll();
 		cocktailRepository.deleteAll();
+		List<Ingredient> ingredients = ingredientRepository.findAll();
+		Assertions.assertThat(ingredients).isEmpty();
 	}
 	
 

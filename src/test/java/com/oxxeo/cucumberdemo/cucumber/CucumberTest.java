@@ -2,8 +2,9 @@ package com.oxxeo.cucumberdemo.cucumber;
 
 import org.junit.runner.RunWith;
 
-import cucumber.api.CucumberOptions;
-import cucumber.api.junit.Cucumber;
+import io.cucumber.junit.Cucumber;
+import io.cucumber.junit.CucumberOptions;
+
 
 
 /**
