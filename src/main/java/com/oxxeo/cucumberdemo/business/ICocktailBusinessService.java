@@ -6,9 +6,10 @@ import com.oxxeo.cucumberdemo.dao.entity.Cocktail;
 import com.oxxeo.cucumberdemo.dto.CocktailDto;
 import com.oxxeo.cucumberdemo.dto.IngredientDto;
 import com.oxxeo.cucumberdemo.exceptions.ExistingCocktailException;
+import com.oxxeo.cucumberdemo.exceptions.IngredientNotFoundException;
 
 /**
- * Interface du service business de récupération de l'objet {@link Cocktail}
+ * Interface du service business de l'objet {@link Cocktail}
  * @author an.timonnier
  *
  */
@@ -32,6 +33,7 @@ public interface ICocktailBusinessService {
 	 * Méthode de récupération de la liste des cocktails comportant l'ingrédient passé en paramètre
 	 * @param ingredient ingrédient pour filtrer la liste des cocktails
 	 * @return la liste des cocktails comportant l'ingrédient passé en paramètre
+	 * @throws IngredientNotFoundException 
 	 */
-	public List<CocktailDto> getAllCocktailsWithIngredient(IngredientDto ingredient);
+	public List<CocktailDto> getAllCocktailsWithIngredient(IngredientDto ingredient) throws IngredientNotFoundException;
 }
