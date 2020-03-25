@@ -4,20 +4,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.constraints.NotNull;
+
 /**
  * Dto représentant un cocktail
  * @author an.timonnier
  *
  */
 public class CocktailDto {
-	
+
 	private Integer id;
-	
+
 	@NotNull
 	private String nom;
-	
+
 	private List<IngredientDto> ingredients = new ArrayList<>();
-	
+
 	@NotNull
 	private Long prix;
 
@@ -52,6 +53,5 @@ public class CocktailDto {
 	public void setPrix(Long prix) {
 		this.prix = prix;
 	}
-	
-	
+
 }

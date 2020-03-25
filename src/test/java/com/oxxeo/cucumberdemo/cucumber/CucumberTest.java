@@ -5,8 +5,6 @@ import org.junit.runner.RunWith;
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
 
-
-
 /**
  * Classe pour jouer les test cucumber
  * @author an.timonnier

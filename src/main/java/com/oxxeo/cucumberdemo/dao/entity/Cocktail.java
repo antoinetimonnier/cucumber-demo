@@ -11,6 +11,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+
 /**
  * Entité représentant un cocktail
  * @author an.timonnier
@@ -24,18 +25,18 @@ public class Cocktail {
 	@Column(name = "id", updatable = false, nullable = false)
 	@GeneratedValue
 	private Integer id;
-	
+
 	@Column(name = "nom", updatable = false, nullable = false)
 	private String nom;
-	
+
 	@Column(name = "prix", nullable = false)
 	private Long prix;
-	
+
 	@ManyToMany
 	@JoinTable(
-	name = "cocktail_ingredient", 
-	joinColumns = @JoinColumn(name = "id_cocktail"), 
-	inverseJoinColumns = @JoinColumn(name = "id_ingredient"))
+			name = "cocktail_ingredient",
+			joinColumns = @JoinColumn(name = "id_cocktail"),
+			inverseJoinColumns = @JoinColumn(name = "id_ingredient"))
 	private List<Ingredient> ingredients;
 
 	public Integer getId() {
@@ -69,7 +70,5 @@ public class Cocktail {
 	public void setPrix(Long prix) {
 		this.prix = prix;
 	}
-	
-	
-	
+
 }

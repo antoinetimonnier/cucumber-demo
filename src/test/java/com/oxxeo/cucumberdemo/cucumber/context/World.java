@@ -16,25 +16,29 @@ public class World {
 	private Optional<HttpStatus> httpStatusResponse;
 	private String messageResponse;
 	private Map<String, Object> pathParam = new HashMap<>();
-	
+
 	public Optional<HttpStatus> getHttpStatusResponse() {
 		return httpStatusResponse;
 	}
+
 	public void setHttpStatusResponse(Optional<HttpStatus> httpStatusResponse) {
 		this.httpStatusResponse = httpStatusResponse;
 	}
+
 	public String getMessageResponse() {
 		return messageResponse;
 	}
+
 	public void setMessageResponse(String messageResponse) {
 		this.messageResponse = messageResponse;
 	}
+
 	public Map<String, Object> getPathParam() {
 		return pathParam;
 	}
+
 	public void setPathParam(Map<String, Object> pathParam) {
 		this.pathParam = pathParam;
 	}
-	
-	
+
 }

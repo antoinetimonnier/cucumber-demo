@@ -29,16 +29,16 @@ import io.cucumber.java.en.When;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @Transactional
 public class StepDefinitions {
-	
+
 	@Autowired
 	private WorldManipulator worldManipulator;
-	
+
 	@Autowired
 	private CocktailRepository cocktailRepository;
-	
+
 	@Autowired
 	private IngredientRepository ingredientRepository;
-	
+
 	@Given("la base de donnée est vide")
 	public void laBaseDeDonneeEstVide() {
 		ingredientRepository.deleteAll();
@@ -46,25 +46,24 @@ public class StepDefinitions {
 		List<Ingredient> ingredients = ingredientRepository.findAll();
 		Assertions.assertThat(ingredients).isEmpty();
 	}
-	
+
 	@When("^Le client ajoute un cocktail avec le nom = \"([^\"]*)\", le prix = \"([^\"]*)\", les ingrédients = \"([^\"]*)\"$")
 	public void leClientAjouteUnCocktailAvecLeNomLePrixLesIngrédients(String nom, String prix, String ingredients)
 			throws Throwable {
 		CocktailDto cocktail = new CocktailDto();
 		cocktail.setNom(nom);
 		cocktail.setPrix(Long.valueOf(prix));
-		TypeReference<List<IngredientDto>> mapType = new TypeReference<List<IngredientDto>>() {};
+		TypeReference<List<IngredientDto>> mapType = new TypeReference<List<IngredientDto>>() {
+		};
 		List<IngredientDto> ingredientsDto = new ObjectMapper().readValue(ingredients.replaceAll("''", "\""), mapType);
 		cocktail.setIngredients(ingredientsDto);
 		worldManipulator.appelerPost(worldManipulator.buildUrl("cocktails"), cocktail, CocktailDto.class);
 	}
 
-
 	@Then("^le client doit avoir un retour avec status (\\d+)$")
 	public void leClientDoitAvoirUnRetourAvecStatus(int status) throws Throwable {
 		Assertions.assertThat(worldManipulator.getWorld().getHttpStatusResponse().get().value()).isEqualTo(status);
 	}
-
 
 	@And("^le client crée un cocktail avec le nom \"([^\"]*)\" et le prix (\\d+)$")
 	public void leClientCréeUnCocktailAvecLeNomEtLePrix(String nom, int prix) throws Throwable {
@@ -74,10 +73,8 @@ public class StepDefinitions {
 		worldManipulator.appelerPost(worldManipulator.buildUrl("cocktails"), cocktailDto, CocktailDto.class);
 	}
 
-
 	@And("^le client doit avoir un retour avec une exception \"([^\"]*)\"$")
 	public void leClientDoitAvoirUnRetourAvecUneException(String exception) throws Throwable {
 		Assertions.assertThat(worldManipulator.getWorld().getHttpStatusResponse().get().getReasonPhrase()).isEqualTo(exception);
 	}
 }
-

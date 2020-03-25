@@ -10,10 +10,10 @@ import javax.validation.constraints.NotNull;
 public class IngredientDto {
 
 	private Integer id;
-	
+
 	@NotNull
 	private String nom;
-	
+
 	private boolean containsAlcool;
 
 	public Integer getId() {
@@ -40,6 +40,4 @@ public class IngredientDto {
 		this.containsAlcool = containsAlcool;
 	}
 
-	
-	
 }

@@ -28,20 +28,20 @@ import com.oxxeo.cucumberdemo.cucumber.context.World;
 @Component
 @Scope(SCOPE_CUCUMBER_GLUE)
 public class WorldManipulator {
+
 	/**
 	 * Le world contient tous les éléments transverses aux test cucumber
 	 */
 	private World world;
-	
+
 	/**
 	 * Template d'appel REST (non mocké)
 	 */
 	private final RestTemplate restTemplate = new RestTemplate();
-	
+
 	@Autowired
 	private Environment environment;
 
-	
 	/**
 	 * Méthode d'appel rest GET pour une URL et pour un type de retour particulier
 	 * @param <T> classe de retour
@@ -90,7 +90,7 @@ public class WorldManipulator {
 			return null;
 		}
 	}
-	
+
 	/**
 	 * Retourne l'URL d'accès à la ressource.
 	 *
@@ -102,14 +102,13 @@ public class WorldManipulator {
 				.port(environment.getProperty("local.server.port")).path("api/" + resource);
 		return String.format(uriBuilder.build().toUriString());
 	}
-	
+
 	public World getWorld() {
 		return world;
 	}
-	
+
 	public void setWorld(World world) {
 		this.world = world;
 	}
 
 }
-

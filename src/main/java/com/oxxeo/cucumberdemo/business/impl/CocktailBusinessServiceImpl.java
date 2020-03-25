@@ -22,17 +22,17 @@ import com.oxxeo.cucumberdemo.mapper.IngredientMapper;
  *
  */
 @Service
-public class CocktailBusinessServiceImpl implements ICocktailBusinessService{
-	
+public class CocktailBusinessServiceImpl implements ICocktailBusinessService {
+
 	@Autowired
 	private CocktailRepository cocktailRepository;
-	
+
 	@Autowired
 	private CocktailMapper cocktailMapper;
-	
+
 	@Autowired
 	private IngredientMapper ingredientMapper;
-	
+
 	@Autowired
 	private IngredientRepository ingredientRepository;
 
@@ -40,16 +40,16 @@ public class CocktailBusinessServiceImpl implements ICocktailBusinessService{
 	public List<CocktailDto> getAllCocktails() {
 		return cocktailMapper.toDtos(cocktailRepository.findAll());
 	}
-	
+
 	@Override
 	public CocktailDto save(CocktailDto cocktailDto) throws ExistingCocktailException {
 		Cocktail alreadyExistingCocktail = cocktailRepository.findByNomAndPrix(cocktailDto.getNom(), cocktailDto.getPrix());
-		if(alreadyExistingCocktail!=null) {
+		if (alreadyExistingCocktail != null) {
 			throw new ExistingCocktailException(cocktailDto);
 		}
 		cocktailDto.getIngredients().stream().forEach(ingredientDto -> {
 			Ingredient alreadyExistingIngredient = ingredientRepository.findByNomAndContainsAlcool(ingredientDto.getNom(), ingredientDto.isContainsAlcool());
-			if(alreadyExistingIngredient == null) {
+			if (alreadyExistingIngredient == null) {
 				// Si l'ingrédient n'existe pas on créer le nouvel ingrédient
 				Ingredient ingredientAfterSave = ingredientRepository.save(ingredientMapper.toEntity(ingredientDto));
 				ingredientDto.setId(ingredientAfterSave.getId());
@@ -64,4 +64,5 @@ public class CocktailBusinessServiceImpl implements ICocktailBusinessService{
 	public List<CocktailDto> getAllCocktailsWithIngredient(IngredientDto ingredientDto) {
 		return cocktailMapper.toDtos(cocktailRepository.findByIngredients(ingredientMapper.toEntity(ingredientDto)));
 	}
+
 }
