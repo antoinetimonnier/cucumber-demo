@@ -13,6 +13,7 @@ import com.oxxeo.cucumberdemo.dao.repository.IngredientRepository;
 import com.oxxeo.cucumberdemo.dto.CocktailDto;
 import com.oxxeo.cucumberdemo.dto.IngredientDto;
 import com.oxxeo.cucumberdemo.exceptions.ExistingCocktailException;
+import com.oxxeo.cucumberdemo.exceptions.IngredientNotFoundException;
 import com.oxxeo.cucumberdemo.mapper.CocktailMapper;
 import com.oxxeo.cucumberdemo.mapper.IngredientMapper;
 
@@ -61,8 +62,12 @@ public class CocktailBusinessServiceImpl implements ICocktailBusinessService {
 	}
 
 	@Override
-	public List<CocktailDto> getAllCocktailsWithIngredient(IngredientDto ingredientDto) {
-		return cocktailMapper.toDtos(cocktailRepository.findByIngredients(ingredientMapper.toEntity(ingredientDto)));
+	public List<CocktailDto> getAllCocktailsWithIngredient(IngredientDto ingredientDto) throws IngredientNotFoundException {
+		Ingredient ingredient = ingredientRepository.findByNomAndContainsAlcool(ingredientDto.getNom(), ingredientDto.isContainsAlcool());
+		if (ingredient == null) {
+			throw new IngredientNotFoundException(ingredientDto);
+		}
+		return cocktailMapper.toDtos(cocktailRepository.findByIngredients(ingredient));
 	}
 
 }

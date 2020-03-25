@@ -9,6 +9,7 @@ import com.oxxeo.cucumberdemo.business.ICocktailBusinessService;
 import com.oxxeo.cucumberdemo.dto.CocktailDto;
 import com.oxxeo.cucumberdemo.dto.IngredientDto;
 import com.oxxeo.cucumberdemo.exceptions.ExistingCocktailException;
+import com.oxxeo.cucumberdemo.exceptions.IngredientNotFoundException;
 import com.oxxeo.cucumberdemo.service.ICocktailService;
 
 /**
@@ -17,8 +18,8 @@ import com.oxxeo.cucumberdemo.service.ICocktailService;
  *
  */
 @RestController
-public class CocktailServiceImpl implements ICocktailService{
-	
+public class CocktailServiceImpl implements ICocktailService {
+
 	@Autowired
 	private ICocktailBusinessService cocktailBusinessService;
 
@@ -33,9 +34,8 @@ public class CocktailServiceImpl implements ICocktailService{
 	}
 
 	@Override
-	public List<CocktailDto> getCocktailsWithIngredient(IngredientDto ingredient) {
+	public List<CocktailDto> getCocktailsWithIngredient(IngredientDto ingredient) throws IngredientNotFoundException {
 		return cocktailBusinessService.getAllCocktailsWithIngredient(ingredient);
 	}
-
 
 }

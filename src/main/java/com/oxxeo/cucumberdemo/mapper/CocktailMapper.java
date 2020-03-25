@@ -13,7 +13,7 @@ import com.oxxeo.cucumberdemo.dto.CocktailDto;
  *
  */
 @Mapper(uses = IngredientMapper.class)
-public abstract class CocktailMapper {
+public interface CocktailMapper {
 
 	public abstract CocktailDto toDto(Cocktail entity);
 

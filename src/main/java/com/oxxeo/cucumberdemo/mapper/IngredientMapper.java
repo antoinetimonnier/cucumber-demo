@@ -13,7 +13,7 @@ import com.oxxeo.cucumberdemo.dto.IngredientDto;
  *
  */
 @Mapper
-public abstract class IngredientMapper {
+public interface IngredientMapper {
 
 	public abstract IngredientDto toDto(Ingredient entity);
 

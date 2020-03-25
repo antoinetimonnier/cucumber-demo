@@ -18,7 +18,10 @@ import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import com.oxxeo.cucumberdemo.cucumber.context.ExceptionDto;
 import com.oxxeo.cucumberdemo.cucumber.context.World;
+
+import gherkin.deps.com.google.gson.Gson;
 
 /**
  * Classe contenant contenant le world et permettant l'utilisation du contexte spring
@@ -30,7 +33,7 @@ import com.oxxeo.cucumberdemo.cucumber.context.World;
 public class WorldManipulator {
 
 	/**
-	 * Le world contient tous les éléments transverses aux test cucumber
+	 * Le world contient tous les éléments transverses aux tests cucumber
 	 */
 	private World world;
 
@@ -51,7 +54,6 @@ public class WorldManipulator {
 	 */
 	public <T> T appelerGet(final String url, final Class<T> clazz) {
 		this.setWorld(new World());
-		this.getWorld().setMessageResponse(null);
 		try {
 			final HttpHeaders headers = new HttpHeaders();
 			headers.setContentType(MediaType.APPLICATION_JSON);
@@ -60,20 +62,22 @@ public class WorldManipulator {
 			this.getWorld().setHttpStatusResponse(Optional.ofNullable(responsesDtos.getStatusCode()));
 			return responsesDtos.getBody();
 		} catch (final HttpStatusCodeException exception) {
-			this.getWorld().setMessageResponse(exception.getResponseBodyAsString());
 			this.getWorld().setHttpStatusResponse(Optional.ofNullable(exception.getStatusCode()));
+			Gson g = new Gson();
+			ExceptionDto exceptionDto = g.fromJson(exception.getResponseBodyAsString(), ExceptionDto.class);
+			this.getWorld().setExceptionDto(exceptionDto);
 			return null;
 		}
 	}
 
 	/**
-	 * Appeler l'API (POST)
+	 * Méthode d'appel rest POST pour une URL , pour un body et pour un type de retour particulier
 	 *
 	 * @param url URL à appeler
 	 * @param bodyDto DTO à passer à l'API
 	 * @param clazz Classe du retour
 	 * @param <T> Type du retour
-	 * @return Valeur postée
+	 * @return retour du post
 	 */
 	public <T> T appelerPost(final String url, final Object bodyDto, final Class<T> clazz) {
 		this.setWorld(new World());
@@ -86,7 +90,9 @@ public class WorldManipulator {
 			return responsesDtos.getBody();
 		} catch (final HttpClientErrorException exception) {
 			this.getWorld().setHttpStatusResponse(Optional.ofNullable(exception.getStatusCode()));
-			this.getWorld().setMessageResponse(exception.getResponseBodyAsString());
+			Gson g = new Gson();
+			ExceptionDto exceptionDto = g.fromJson(exception.getResponseBodyAsString(), ExceptionDto.class);
+			this.getWorld().setExceptionDto(exceptionDto);
 			return null;
 		}
 	}
