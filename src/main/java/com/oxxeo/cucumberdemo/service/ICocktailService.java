@@ -16,7 +16,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 
 /**
- * Service REST de récupération des {@link CocktailDto}
+ * Service REST des {@link CocktailDto}
  * @author an.timonnier
  *
  */

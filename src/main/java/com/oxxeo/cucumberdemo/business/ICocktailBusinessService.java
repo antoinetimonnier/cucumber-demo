@@ -9,7 +9,7 @@ import com.oxxeo.cucumberdemo.exceptions.ExistingCocktailException;
 import com.oxxeo.cucumberdemo.exceptions.IngredientNotFoundException;
 
 /**
- * Interface du service business de récupération de l'objet {@link Cocktail}
+ * Interface du service business de l'objet {@link Cocktail}
  * @author an.timonnier
  *
  */

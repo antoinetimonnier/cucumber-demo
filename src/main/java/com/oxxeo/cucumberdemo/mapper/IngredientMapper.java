@@ -8,7 +8,7 @@ import com.oxxeo.cucumberdemo.dao.entity.Ingredient;
 import com.oxxeo.cucumberdemo.dto.IngredientDto;
 
 /**
- * Mapper des ingrédients
+ * Mapper mapstruct des ingrédients
  * @author an.timonnier
  *
  */

@@ -8,7 +8,7 @@ import com.oxxeo.cucumberdemo.dao.entity.Cocktail;
 import com.oxxeo.cucumberdemo.dto.CocktailDto;
 
 /**
- * Mapper des cocktails
+ * Mapper mapstruct des cocktails
  * @author an.timonnier
  *
  */

@@ -1,7 +1,7 @@
 package com.oxxeo.cucumberdemo.cucumber.context;
 
 /**
- * Dto contenant le message d'erreur
+ * Dto contenant le message d'erreur ainsi que l'error liée a l'exception
  * @author an.timonnier
  *
  */

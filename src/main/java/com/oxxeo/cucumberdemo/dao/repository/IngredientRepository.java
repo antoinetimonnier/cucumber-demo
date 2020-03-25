@@ -11,6 +11,12 @@ import com.oxxeo.cucumberdemo.dao.entity.Ingredient;
  */
 public interface IngredientRepository extends JpaRepository<Ingredient, Integer> {
 
+	/**
+	 * Méthode pour récupérer un ingrédient via son nom et le boolean containsAlcool
+	 * @param nom nom du cocktail
+	 * @param containsAlcool boolean indiquant si l'ingredient contient de l'alcool
+	 * @return l'ingredient correspondant
+	 */
 	Ingredient findByNomAndContainsAlcool(String nom, boolean containsAlcool);
 
 }

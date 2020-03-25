@@ -11,9 +11,9 @@
 	</parent>
 	<groupId>com.oxxeo</groupId>
 	<artifactId>cucumber-demo</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>cucumber-demo</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Projet de démonstration pour l'utilisation de cucumber</description>
 
 	<properties>
 		<java.version>11</java.version>
@@ -93,6 +93,7 @@
 				<directory>src/test/resources</directory>
 			</testResource>
 		</testResources>
+		<!-- Plugin d'utilisation du mapper mapstruct -->
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

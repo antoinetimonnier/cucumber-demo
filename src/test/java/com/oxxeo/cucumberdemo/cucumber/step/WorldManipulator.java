@@ -24,7 +24,7 @@ import com.oxxeo.cucumberdemo.cucumber.context.World;
 import gherkin.deps.com.google.gson.Gson;
 
 /**
- * Classe contenant contenant le world et permettant l'utilisation du contexte spring
+ * Classe contenant contenant le world et permettant de faire les appel REST
  * @author an.timonnier
  *
  */

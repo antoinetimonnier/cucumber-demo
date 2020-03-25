@@ -13,7 +13,7 @@ import com.oxxeo.cucumberdemo.exceptions.IngredientNotFoundException;
 import com.oxxeo.cucumberdemo.service.ICocktailService;
 
 /**
- * Implémentation du service REST de récupération des {@link CocktailDto}
+ * Implémentation du service REST des {@link CocktailDto}
  * @author an.timonnier
  *
  */

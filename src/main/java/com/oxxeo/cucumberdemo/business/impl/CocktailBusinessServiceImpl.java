@@ -51,7 +51,7 @@ public class CocktailBusinessServiceImpl implements ICocktailBusinessService {
 		cocktailDto.getIngredients().stream().forEach(ingredientDto -> {
 			Ingredient alreadyExistingIngredient = ingredientRepository.findByNomAndContainsAlcool(ingredientDto.getNom(), ingredientDto.isContainsAlcool());
 			if (alreadyExistingIngredient == null) {
-				// Si l'ingrédient n'existe pas on créer le nouvel ingrédient
+				// Si l'ingrédient n'existe pas on crée le nouvel ingrédient
 				Ingredient ingredientAfterSave = ingredientRepository.save(ingredientMapper.toEntity(ingredientDto));
 				ingredientDto.setId(ingredientAfterSave.getId());
 			} else {

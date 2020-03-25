@@ -16,7 +16,6 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.oxxeo.cucumberdemo.cucumber.datatable.CocktailDataTable;
-import com.oxxeo.cucumberdemo.dao.entity.Ingredient;
 import com.oxxeo.cucumberdemo.dao.repository.CocktailRepository;
 import com.oxxeo.cucumberdemo.dao.repository.IngredientRepository;
 import com.oxxeo.cucumberdemo.dto.CocktailDto;
@@ -28,7 +27,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 /**
- * Classe de définition des given, when, then pour ce qui se rapporte directement à l'api
+ * Classe de définition des action word given, when, then 
  * @author an.timonnier
  *
  */
@@ -49,8 +48,6 @@ public class StepDefinitions {
 	public void laBaseDeDonneeEstVide() {
 		ingredientRepository.deleteAll();
 		cocktailRepository.deleteAll();
-		List<Ingredient> ingredients = ingredientRepository.findAll();
-		Assertions.assertThat(ingredients).isEmpty();
 	}
 
 	@When("^Le client ajoute un cocktail avec le nom = \"([^\"]*)\", le prix = \"([^\"]*)\", les ingrédients = \"([^\"]*)\"$")
