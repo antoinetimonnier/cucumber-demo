@@ -1,8 +1,6 @@
 package com.oxxeo.cucumberdemo.cucumber.context;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
@@ -18,7 +16,6 @@ public class World {
 
 	private Optional<HttpStatus> httpStatusResponse;
 	private ExceptionDto exceptionDto;
-	private Map<String, Object> pathParam = new HashMap<>();
 	// Cocktail créé (après appel au POST)
 	private CocktailDto savedCocktail;
 	// Cocktail récupérés (après appel au GET ou au POST /ingredient)
@@ -38,14 +35,6 @@ public class World {
 
 	public void setExceptionDto(ExceptionDto exceptionDto) {
 		this.exceptionDto = exceptionDto;
-	}
-
-	public Map<String, Object> getPathParam() {
-		return pathParam;
-	}
-
-	public void setPathParam(Map<String, Object> pathParam) {
-		this.pathParam = pathParam;
 	}
 
 	public CocktailDto getSavedCocktail() {

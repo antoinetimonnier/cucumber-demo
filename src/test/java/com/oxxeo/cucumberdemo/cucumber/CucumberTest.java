@@ -18,7 +18,7 @@ import io.cucumber.junit.CucumberOptions;
 		glue = { "com.oxxeo.cucumberdemo.cucumber.step" },
 		// Plugin Junit pour le lancement des test
 		plugin = { "pretty", "junit:target/resultat_tests_cucumber.xml" },
-		// Strict mode (en echec si des test sont à undefined ou pending)
+		// Strict mode (les tests sont en echec si les méthodes des steps sont à undefined ou pending)
 		strict = true)
 public class CucumberTest {
 
