@@ -122,46 +122,4 @@
 		</plugins>
 	</build>
 
-	<!-- Plugin pour aller récupérer le resultat des tests directement depuis 
-		cucumberstudio via api -->
-	<profiles>
-		<profile>
-			<id>hiptest</id>
-			<activation>
-				<property>
-					<name>HIPTEST_URL</name>
-				</property>
-			</activation>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.codehaus.mojo</groupId>
-						<artifactId>exec-maven-plugin</artifactId>
-						<version>1.2</version>
-						<executions>
-							<execution>
-								<id>hiptest</id>
-								<phase>package</phase>
-								<goals>
-									<goal>exec</goal>
-								</goals>
-								<configuration>
-									<executable>curl</executable>
-									<arguments>
-										<argument>-X</argument>
-										<argument>POST</argument>
-										<argument>-F</argument>
-										<argument>file=@./target/resultat_tests_cucumber.xml</argument>
-										<!-- {URL cucumberstudio}/{secret token}/test_run/{id du test run}/junit -->
-										<argument>${HIPTEST_URL}/40074803351239285093254358173139769397450455822745809670/test_run/379275/junit</argument>
-									</arguments>
-								</configuration>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
-
 </project>
