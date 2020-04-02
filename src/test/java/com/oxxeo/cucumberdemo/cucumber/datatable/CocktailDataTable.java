@@ -11,7 +11,7 @@ public class CocktailDataTable {
 
 	private String nom;
 
-	private Long prix;
+	private String prix;
 
 	private String ingredients;
 
@@ -23,20 +23,20 @@ public class CocktailDataTable {
 		this.nom = nom;
 	}
 
-	public Long getPrix() {
-		return prix;
-	}
-
-	public void setPrix(Long prix) {
-		this.prix = prix;
-	}
-
 	public String getIngredients() {
 		return ingredients;
 	}
 
 	public void setIngredients(String ingredients) {
 		this.ingredients = ingredients;
+	}
+
+	public String getPrix() {
+		return prix;
+	}
+
+	public void setPrix(String prix) {
+		this.prix = prix;
 	}
 
 }

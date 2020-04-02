@@ -137,7 +137,7 @@ public class StepDefinitions {
 	private CocktailDto cocktailDataTableToCocktailDto(CocktailDataTable cocktailDataTable) {
 		CocktailDto cocktailDto = new CocktailDto();
 		cocktailDto.setNom(cocktailDataTable.getNom());
-		cocktailDto.setPrix(cocktailDataTable.getPrix());
+		cocktailDto.setPrix(Long.valueOf(cocktailDataTable.getPrix()));
 		cocktailDto.setIngredients(convertToListOfIngredientDto(cocktailDataTable.getIngredients()));
 		return cocktailDto;
 	}

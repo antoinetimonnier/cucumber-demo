@@ -35,7 +35,7 @@ public class DataTableConfiguration implements TypeRegistryConfigurer {
 	private CocktailDataTable createCocktailDataTable(Map<String, String> entries) {
 		CocktailDataTable cocktailDatatable = new CocktailDataTable();
 		cocktailDatatable.setNom(entries.get("nom"));
-		cocktailDatatable.setPrix(Long.valueOf(entries.get("prix")));
+		cocktailDatatable.setPrix(entries.get("prix"));
 		cocktailDatatable.setIngredients(entries.get("ingredients"));
 		return cocktailDatatable;
 	}
